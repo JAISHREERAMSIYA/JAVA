@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class ConstructorChainingExample {
+    private String name;
+    private int age;
+
+    // Default constructor
+    public ConstructorChainingExample() {
+        this("Unknown", 0); // Calls the parameterized constructor
+    }
+
+    // Parameterized constructor
+    public ConstructorChainingExample(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the name for Person 1 (default): ");
+        String name1 = input.nextLine();
+
+        System.out.print("Enter the age for Person 1 (default): ");
+        int age1 = input.nextInt();
+
+        ConstructorChainingExample person1 = new ConstructorChainingExample();
+        ConstructorChainingExample person2;
+
+        input.nextLine(); // Consume the newline character
+
+        System.out.print("Enter the name for Person 2: ");
+        String name2 = input.nextLine();
+
+        System.out.print("Enter the age for Person 2: ");
+        int age2 = input.nextInt();
+
+        if (!name2.isEmpty() || age2 > 0) {
+            person2 = new ConstructorChainingExample(name2, age2);
+        } else {
+            person2 = new ConstructorChainingExample();
+        }
+
+        // Display information
+        System.out.println("Person 1 - Name: " + person1.getName() + ", Age: " + person1.getAge());
+        System.out.println("Person 2 - Name: " + person2.getName() + ", Age: " + person2.getAge());
+    }
+}
