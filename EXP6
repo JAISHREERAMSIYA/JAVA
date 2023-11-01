@@ -46,3 +46,53 @@ public class ReverseArrayList {
         System.out.println();
     }
 }
+
+//alternative
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ReverseArrayListWithInput {
+    public static void main(String[] args) {
+        ArrayList<Integer> inputList = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter values into the ArrayList (type 'exit' to stop):");
+
+        while (true) {
+            System.out.print("Enter a value (or 'exit' to stop): ");
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("exit")) {
+                break;
+            }
+
+            try {
+                int value = Integer.parseInt(input);
+                inputList.add(value);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+            }
+        }
+
+        System.out.println("Original ArrayList: " + inputList);
+
+        reverseArrayList(inputList);
+
+        System.out.println("Reversed ArrayList: " + inputList);
+    }
+
+    public static void reverseArrayList(ArrayList<Integer> list) {
+        int left = 0;
+        int right = list.size() - 1;
+
+        while (left < right) {
+            // Swap elements at the left and right indices
+            int temp = list.get(left);
+            list.set(left, list.get(right));
+            list.set(right, temp);
+
+            left++;
+            right--;
+        }
+    }
+}
